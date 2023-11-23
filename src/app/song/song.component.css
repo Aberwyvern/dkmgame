@@ -1,0 +1,76 @@
+.song-card {
+    border: 3px ridge black; 
+    background: #004500; 
+    color: white; 
+    padding: 10px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 20px;
+    opacity: 85%;
+}
+
+button {
+    width: 100px;
+    height: 35px;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border-radius: 25% 10%;
+    border-color: black;
+    background-color: #EEEEEE;
+    color: #006000;
+    cursor: pointer;
+}
+
+img.album {
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 25% 10%;
+    border-color: black;
+}
+
+div.question {
+    margin: 10px;
+}
+
+div.result {
+    margin: 10px;
+}
+
+div.final-points {
+    margin: 10px;
+}
+
+@media (min-width: 800px) {
+    .song-card {
+        width: 750px;
+        height: 650px;
+    }
+
+    img.album {
+        width: 150px;
+        height: 150px;
+    }
+
+    iframe.video {
+        width: 560px;
+        height: 315px;
+    }
+}
+  
+@media (max-width: 799px) {
+    .song-card {
+      width: 90%;
+    }
+
+    img.album {
+        width: 100px;
+        height: 100px;
+    }
+
+    iframe.video {
+        width: 360px;
+        height: 202px;
+    }
+}
+  

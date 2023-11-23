@@ -1,0 +1,9 @@
+:host {
+  --content-padding: 0px;
+  
+}
+
+.content {
+  padding: var(--content-padding);
+  margin: 0
+}
