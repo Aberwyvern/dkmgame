@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Input, Output, EventEmitter, Inject } from '@angular/core';
+import { CommonModule, APP_BASE_HREF } from '@angular/common';
 import { SafePipeModule } from 'safe-pipe';
 import { Song, SongCompleted } from '../models/song';
 
@@ -43,18 +43,18 @@ import { Song, SongCompleted } from '../models/song';
       </div>
 
       <div *ngIf="isDKMAnswered && item.isDKM && !albumAnswered">
-        <img class="album" title="Do or Die" (click)="setAlbumResponse('Do Or Die')" src="/assets/do-or-die.webp" />
-        <img class="album" title="The Gang\\'s All Here" (click)="setAlbumResponse('The Gang\\'s All Here')" src="/assets/the-gangs-all-here.webp" />
-        <img class="album" title="Sing Loud Sing Proud" (click)="setAlbumResponse('Sing Loud Sing Proud')" src="/assets/sing-loud-sing-proud.webp" />
-        <img class="album" title="Blackout" (click)="setAlbumResponse('Blackout')" src="/assets/blackout.webp" />
-        <img class="album" title="The Warrior\\'s Code" (click)="setAlbumResponse('The Warrior\\'s Code')" src="/assets/the-warriors-code.webp" />
-        <img class="album" title="The Meanest of Times" (click)="setAlbumResponse('The Meanest of Times')" src="/assets/the-meanest-of-times.webp" />
-        <img class="album" title="Going Out in Style" (click)="setAlbumResponse('Going Out in Style')" src="/assets/going-out-in-style.webp" />
-        <img class="album" title="Signed and Sealed In Blood" (click)="setAlbumResponse('Signed and Sealed In Blood')" src="/assets/signed-and-sealed-in-blood.webp" />
-        <img class="album" title="11 Short Stories of Pain and Glory" (click)="setAlbumResponse('11 Short Stories of Pain and Glory')" src="/assets/11-short-stories-of-pain-glory.webp" />
-        <img class="album" title="Turn Up That Dial" (click)="setAlbumResponse('Turn Up That Dial')" src="/assets/turn-up-that-dial.webp" />
-        <img class="album" title="This Machine Still Kills Fascists" (click)="setAlbumResponse('This Machine Still Kills Fascists')" src="/assets/this-machine-still-kills-fascists.webp" />
-        <img class="album" title="Okemah Rising" (click)="setAlbumResponse('Okemah Rising')" src="/assets/okemah-rising.webp" />
+        <img class="album" title="Do or Die" (click)="setAlbumResponse('Do Or Die')" [src]="baseHref + 'assets/do-or-die.webp'" />
+        <img class="album" title="The Gang\\'s All Here" (click)="setAlbumResponse('The Gang\\'s All Here')" [src]="baseHref + 'assets/the-gangs-all-here.webp'" />
+        <img class="album" title="Sing Loud Sing Proud" (click)="setAlbumResponse('Sing Loud Sing Proud')" [src]="baseHref + 'assets/sing-loud-sing-proud.webp'" />
+        <img class="album" title="Blackout" (click)="setAlbumResponse('Blackout')" [src]="baseHref + 'assets/blackout.webp'" />
+        <img class="album" title="The Warrior\\'s Code" (click)="setAlbumResponse('The Warrior\\'s Code')" [src]="baseHref + 'assets/the-warriors-code.webp'" />
+        <img class="album" title="The Meanest of Times" (click)="setAlbumResponse('The Meanest of Times')" [src]="baseHref + 'assets/the-meanest-of-times.webp'" />
+        <img class="album" title="Going Out in Style" (click)="setAlbumResponse('Going Out in Style')" [src]="baseHref + 'assets/going-out-in-style.webp'" />
+        <img class="album" title="Signed and Sealed In Blood" (click)="setAlbumResponse('Signed and Sealed In Blood')" [src]="baseHref + 'assets/signed-and-sealed-in-blood.webp'" />
+        <img class="album" title="11 Short Stories of Pain and Glory" (click)="setAlbumResponse('11 Short Stories of Pain and Glory')" [src]="baseHref + 'assets/11-short-stories-of-pain-glory.webp'" />
+        <img class="album" title="Turn Up That Dial" (click)="setAlbumResponse('Turn Up That Dial')" [src]="baseHref + 'assets/turn-up-that-dial.webp'" />
+        <img class="album" title="This Machine Still Kills Fascists" (click)="setAlbumResponse('This Machine Still Kills Fascists')" [src]="baseHref + 'assets/this-machine-still-kills-fascists.webp'" />
+        <img class="album" title="Okemah Rising" (click)="setAlbumResponse('Okemah Rising')" [src]="baseHref + 'assets/okemah-rising.webp'" />
       </div>
 
       <div *ngIf="albumAnswered">
@@ -90,6 +90,7 @@ export class SongComponent {
     isDKM: boolean | undefined;
     albumAnswered: boolean = false;
     albumResponse: string = '';
+    baseHref: string = '/';
 
     private _item!: Song;
     @Input() set item(value: Song) {
@@ -104,6 +105,10 @@ export class SongComponent {
     }
 
     @Output() songCompleted: EventEmitter<SongCompleted> = new EventEmitter();
+
+    constructor() {
+      this.baseHref = window.location.host.indexOf('localhost') !== -1 ? '/' : '/dkmgame/browser/';
+    }
 
     setIsDKM(answer: boolean) {
         this.isDKM = answer;

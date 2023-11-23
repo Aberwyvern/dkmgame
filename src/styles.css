@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Be Vietnam Pro', sans-serif;
-  background-image: url('/assets/bg3.jpeg');
+  background-image: url('/assets/bg3.jpeg'), url('/dkmgame/browser/assets/bg3.jpeg');
   padding: 0;
   margin: 0;
 }
